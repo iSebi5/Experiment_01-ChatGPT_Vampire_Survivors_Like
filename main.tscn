@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxs17ientapga"]
+
+[ext_resource type="Script" path="res://Experiment_01-ChatGPT_Vampire_Survivors_Like/Player.gd" id="1_llj0k"]
+[ext_resource type="Texture2D" uid="uid://dludpgbl1wpt5" path="res://Red.png" id="2_jifp6"]
+[ext_resource type="PackedScene" uid="uid://d17arl2vhtx4e" path="res://bullet.tscn" id="2_m23m6"]
+[ext_resource type="PackedScene" uid="uid://brej82w0lsrx3" path="res://enemy.tscn" id="3_836ya"]
+[ext_resource type="Script" path="res://Experiment_01-ChatGPT_Vampire_Survivors_Like/EnemySpawner.gd" id="4_shcm4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_govw0"]
+size = Vector2(52, 78)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_v30yt"]
+specular_color = Color(0.123333, 0.74, 0, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_llj0k")
+bullet_scene = ExtResource("2_m23m6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(3.85046e-07, 0.573206, 0.674968, 1)
+position = Vector2(-4.76837e-07, 0.500002)
+scale = Vector2(0.0270833, 0.0712963)
+texture = ExtResource("2_jifp6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+visible = false
+shape = SubResource("RectangleShape2D_govw0")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Obstacle" type="StaticBody2D" parent="."]
+position = Vector2(300, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacle"]
+position = Vector2(9.53674e-07, 1.90735e-06)
+scale = Vector2(52, 78)
+texture = SubResource("CanvasTexture_v30yt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+shape = SubResource("RectangleShape2D_govw0")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("4_shcm4")
+enemy_scene = ExtResource("3_836ya")
+player = NodePath("../Player")
