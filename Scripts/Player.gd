@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 @export var shoot_interval = 1.0
 @export var shoot_distance = 300.0  # Distancia máxima para disparar
+@export var points: int = 0  # Puntos del jugador
 
 var shoot_timer = 0.0
 
@@ -58,3 +59,8 @@ func get_closest_enemy() -> Node:
             closest_enemy = enemy
 
     return closest_enemy
+
+func on_xp_collected() -> void:
+    points += 10
+    print("Puntos: " + str(points))
+

@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var enemy_scene: PackedScene
-@export var spawn_interval = 2.0
-@export var spawn_distance = 500.0
+@export var spawn_interval = 1.0 #Tiempo entre apariciones
+@export var spawn_distance = 600.0 #Distancia de spawneo
 @export var player: NodePath
 
 var spawn_timer = 0.0

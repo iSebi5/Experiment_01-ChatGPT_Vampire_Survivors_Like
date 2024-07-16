@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxs17ientapga"]
+[gd_scene load_steps=10 format=3 uid="uid://cy1oepbct3pgn"]
 
 [ext_resource type="Script" path="res://Experiment_01-ChatGPT_Vampire_Survivors_Like/Player.gd" id="1_llj0k"]
-[ext_resource type="Texture2D" uid="uid://dludpgbl1wpt5" path="res://Red.png" id="2_jifp6"]
-[ext_resource type="PackedScene" uid="uid://d17arl2vhtx4e" path="res://bullet.tscn" id="2_m23m6"]
-[ext_resource type="PackedScene" uid="uid://brej82w0lsrx3" path="res://enemy.tscn" id="3_836ya"]
+[ext_resource type="PackedScene" uid="uid://co1p2k0wgby6b" path="res://bullet.tscn" id="2_m23m6"]
+[ext_resource type="PackedScene" uid="uid://bgh3hs6uc66de" path="res://enemy.tscn" id="3_836ya"]
+[ext_resource type="Texture2D" path="res://Experiment_01-ChatGPT_Vampire_Survivors_Like/goku.png" id="3_rp734"]
 [ext_resource type="Script" path="res://Experiment_01-ChatGPT_Vampire_Survivors_Like/EnemySpawner.gd" id="4_shcm4"]
+[ext_resource type="Script" path="res://Experiment_01-ChatGPT_Vampire_Survivors_Like/TimerDisplay.gd" id="6_8dtr6"]
+[ext_resource type="Script" path="res://Experiment_01-ChatGPT_Vampire_Survivors_Like/FPSMeter.gd" id="7_58i0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_govw0"]
 size = Vector2(52, 78)
@@ -19,13 +21,11 @@ script = ExtResource("1_llj0k")
 bullet_scene = ExtResource("2_m23m6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-modulate = Color(3.85046e-07, 0.573206, 0.674968, 1)
-position = Vector2(-4.76837e-07, 0.500002)
-scale = Vector2(0.0270833, 0.0712963)
-texture = ExtResource("2_jifp6")
+position = Vector2(1.5, -3.5)
+scale = Vector2(0.158696, 0.145)
+texture = ExtResource("3_rp734")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-visible = false
 shape = SubResource("RectangleShape2D_govw0")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -45,3 +45,17 @@ shape = SubResource("RectangleShape2D_govw0")
 script = ExtResource("4_shcm4")
 enemy_scene = ExtResource("3_836ya")
 player = NodePath("../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_8dtr6")
+
+[node name="Timer" type="Label" parent="CanvasLayer"]
+offset_left = 553.0
+offset_top = 6.0
+offset_right = 593.0
+offset_bottom = 29.0
+
+[node name="FPSMeter" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("7_58i0u")
