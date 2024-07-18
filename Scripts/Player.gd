@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
     if Input.is_action_pressed("ui_right"):
         velocity.x += 1
 
+
     # Normalizar la velocidad y aplicarle la velocidad
     if velocity != Vector2.ZERO:
         velocity = velocity.normalized() * speed
@@ -63,4 +64,11 @@ func get_closest_enemy() -> Node:
 func on_xp_collected() -> void:
     points += 10
     print("Puntos: " + str(points))
+
+func _input(event):
+    if event.is_action_pressed("ui_cancel"):
+        Engine.time_scale = 0
+    if event.is_action_released("ui_cancel"):
+        Engine.time_scale = 1
+
 
